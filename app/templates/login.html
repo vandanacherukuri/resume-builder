@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <div class="main-head">
+            <h1><a href="/">Resume builder</a></h1>
+        </div>
+       
+        <h2 class="form-title">Login</h2>
+        {% with msgs = get_flashed_messages() %}
+        {% if msgs %}
+        <div class="messages">
+            {% for msg in msgs %}
+            <div class="msg">{{ msg }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('ResumeBuilder.login') }}" method="POST">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{{ url_for('ResumeBuilder.register') }}">Register here</a></p>
+    </div>
+</body>
+</html>
